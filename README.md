@@ -4,7 +4,7 @@ This project is an implementation of the shell created for the C code sprint at 
 It is a simple UNIX command interpreter that replicates functionalities of the simple shell (sh) and more other functions are also included. It is based on the Thompson Shell.
 
 Installation:
-All your files will be compiled on Ubuntu 20.04 LTS using gcc, using the options -Wall -Werror -Wextra -pedantic -std=gnu89.
+All your files were compiled on Ubuntu 20.04 LTS using gcc, using the options -Wall -Werror -Wextra -pedantic -std=gnu89.
 
 Testing:
 After compilation using gcc -Wall -Werror -Wextra -pedantic -std=gnu89 *.c -o hsh, the resulting program can run stand-alone, either in interactive or non-interactive mode.
