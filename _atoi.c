@@ -32,6 +32,7 @@ int is_delim(char c, char *delim)
  */
 
 int _isalpha(int c)
+:wq
 {
 	if ((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z'))
 		return (1);
