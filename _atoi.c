@@ -1,5 +1,10 @@
 #include "shell.h"
 
+typedef struct info_t
+{
+	int readfd;
+} info_t;
+
 /**
  * interactive - returns true if shell is in interactive mode
  * @info: struct address
@@ -13,7 +18,7 @@ int interactive(info_t *info)
 
 /**
  * is_delim - checks if the character is a delim
- * @c: check the char 
+ * @c: check the char
  * @delim: the delim string
  * Return: 1 if it's true, 0 if false
  */
@@ -32,7 +37,6 @@ int is_delim(char c, char *delim)
  */
 
 int _isalpha(int c)
-:wq
 {
 	if ((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z'))
 		return (1);
@@ -51,7 +55,7 @@ int _atoi(char *s)
 	int i, sign = 1, flag = 0, output;
 	unsigned int result = 0;
 
-	for (i = 0;  s[i] != '\0' && flag != 2; i++)
+	for (i = 0; s[i] != '\0' && flag != 2; i++)
 	{
 		if (s[i] == '-')
 			sign *= -1;
@@ -73,4 +77,3 @@ int _atoi(char *s)
 
 	return (output);
 }
-
