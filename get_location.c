@@ -1,4 +1,7 @@
 #include "shell.h"
+#include <stdlib.h>
+#include <string.h>
+#include <sys/stat.h>
 
 /* findCommandLocation - Locate the full path of a command in the PATH environment variable.
  *

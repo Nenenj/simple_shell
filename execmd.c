@@ -9,10 +9,13 @@ void execmd(char **argv)
 
     if (argv)
     {
-        /* get the command */
+
+        /* Get the command */
         command = argv[0];
 
-        /* Check if the command is "env" */
+        printf("Executing command: %s\n", command);
+
+        /* check if the command is "env" */
         if (strcmp(command, "env") == 0)
         {
             /* Print the current environment */
@@ -29,11 +32,24 @@ void execmd(char **argv)
             /* generate the path to this command before passing it to execve */
             actualCommand = get_location(command);
 
-            /* execute command with execve */
-            if (execve(actualCommand, argv, NULL) == -1)
+            if (actualCommand != NULL)
             {
-                perror("Error:");
+                printf("Full path to command: %s\n", actualCommand);
+
+                /* execute command with execve */
+                if (execve(actualCommand, argv, NULL) == -1)
+                {
+                    perror("Error:");
+                }
+            }
+            else
+            {
+                printf("Command not found: %s\n", command);
             }
         }
+    }
+    else
+    {
+        printf("No command provided. \n");
     }
 }

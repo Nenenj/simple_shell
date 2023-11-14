@@ -1,4 +1,8 @@
 #include "shell.h"
+#include <stdlib.h>
+#include <string.h>
+#include <stdio.h>
+#include <unistd.h>
 
 void execmd(char **argv);
 
@@ -26,22 +30,23 @@ int shell(void)
         if (nchars_read == -1)
         {
             printf("Exiting shell....\n");
-            return (-1);
+            break;
         }
 
         /* allocate space for a copy of the line */
         line_copy = malloc(sizeof(char) * nchars_read);
         if (line_copy == NULL)
         {
-            perror("tsh memory allocation error");
+            perror("Memory allocation error");
             return (-1);
         }
 
         /* copy line to line_copy */
         strcpy(line_copy, line);
 
-        /***** split the string (line) into an array of words *****/
-        /* calculate the total number of tokens */
+        /* Reset num_tokens for each iteration */
+        num_tokens = 0;
+
         token = strtok(line, delim);
 
         while (token != NULL)
@@ -49,36 +54,40 @@ int shell(void)
             num_tokens++;
             token = strtok(NULL, delim);
         }
-        num_tokens++;
 
         /* Allocate space to hold the array of strings */
-        cmdArgs = malloc(sizeof(char *) * num_tokens);
+        cmdArgs = malloc(sizeof(char *) * (num_tokens + 1));
 
         /* store each of the token in the argv array */
         token = strtok(line_copy, delim);
 
         for (i = 0; token != NULL; i++)
         {
-            cmdArgs[i] = malloc(sizeof(char) * strlen(token));
+            cmdArgs[i] = malloc(sizeof(char) * (strlen(token) + 1));
+            if (cmdArgs[i] == NULL)
+            {
+                perror("Memory allocation error");
+                return (-1);
+            }
             strcpy(cmdArgs[i], token);
-
             token = strtok(NULL, delim);
         }
+
         cmdArgs[i] = NULL;
 
         /* execute the command */
         execmd(cmdArgs);
-    }
 
-    /* free up allocated memory for cmdArgs */
-    for (i = 0; i < num_tokens; i++)
-    {
-        free(cmdArgs[i]);
-    }
-    free(cmdArgs);
+        /* free up allocated memory for cmdArgs */
+        for (i = 0; i < num_tokens; i++)
+        {
+            free(cmdArgs[i]);
+        }
+        free(cmdArgs);
 
-    /* free up allocated memory for line_copy and line */
-    free(line_copy);
+        /* free up allocated memory for line_copy and line */
+        free(line_copy);
+    }
     free(line);
 
     return 0;
