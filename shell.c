@@ -1,12 +1,17 @@
 #include "shell.h"
 #include <stdio.h>
 
-void shell();
+/**
+ * main - Entry point for the shell program.
+ *
+ * Return: Always 0.
+ */
+void shell(void);
 
 int main(void)
 {
-    /* call shell function */
-    shell();
+	/* Call shell function */
+	shell();
 
-    return 0;
+	return (0);
 }

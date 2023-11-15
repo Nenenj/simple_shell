@@ -8,7 +8,9 @@
 #include <sys/types.h>
 #include <sys/stat.h>
 
+extern char **environ;
+
 void execmd(char **argv);
 char *get_location(char *command);
 
-#endif /*SHELL_H */
+#endif /* SHELL_H */
