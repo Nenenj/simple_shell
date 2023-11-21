@@ -1,15 +1,10 @@
 #include "shell.h"
 
-typedef struct info_t
-{
-	int readfd;
-} info_t;
-
 /**
- * interactive - returns true if shell is in interactive mode
+ * interactive - returns true if shell is interactive mode
  * @info: struct address
  *
- * Return: 1 if in interactive mode, 0 otherwise
+ * Return: 1 if interactive mode, 0 otherwise
  */
 int interactive(info_t *info)
 {
@@ -17,10 +12,10 @@ int interactive(info_t *info)
 }
 
 /**
- * is_delim - checks if the character is a delim
- * @c: check the char
- * @delim: the delim string
- * Return: 1 if it's true, 0 if false
+ * is_delim - checks if character is a delimeter
+ * @c: the char to check
+ * @delim: the delimeter string
+ * Return: 1 if true, 0 if false
  */
 int is_delim(char c, char *delim)
 {
@@ -31,9 +26,9 @@ int is_delim(char c, char *delim)
 }
 
 /**
- *_isalpha - checks for an alphabetic character
- *@c: character to input
- *Return: 1 if c is an alphabetic, 0 otherwise
+ *_isalpha - checks for alphabetic character
+ *@c: The character to input
+ *Return: 1 if c is alphabetic, 0 otherwise
  */
 
 int _isalpha(int c)
@@ -43,13 +38,11 @@ int _isalpha(int c)
 	else
 		return (0);
 }
-
 /**
- *_atoi - converts the string to an integer
- *@s:  string to be converted
- *Return: 0 if no numbers in a string, converted a number otherwise
+ * _atoi - converts a string to an integer
+ * @s: the string to be converted
+ * Return: 0 if no numbers in string, converted number otherwise
  */
-
 int _atoi(char *s)
 {
 	int i, sign = 1, flag = 0, output;
@@ -77,3 +70,5 @@ int _atoi(char *s)
 
 	return (output);
 }
+
+/* Other functions related to integer conversion, if any */
